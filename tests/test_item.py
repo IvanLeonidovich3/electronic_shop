@@ -17,3 +17,21 @@ def test_calculate_total_price(test_class):
 
 def test_apply_discount(test_class):
     assert test_class.apply_discount() == 7
+
+
+def test_string_to_number():
+    """тестируем метод конвертации строки в число"""
+
+    assert Item.string_to_number("10.5") == 10
+    with pytest.raises(ValueError):
+        Item.string_to_number("abc")
+    assert Item.string_to_number(10) == print('Данная запись не является числом-строкой')
+
+
+def test__string_to_number():
+    """тестируем метод конвертации строки в число"""
+
+    assert Item.string_to_number("10.5") == 10
+    with pytest.raises(ValueError):
+        Item.string_to_number("abc")
+    assert Item.string_to_number(10) == print('Данная запись не является числом-строкой')
