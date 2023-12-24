@@ -12,26 +12,22 @@ def test_class():
 
 
 def test_calculate_total_price(test_class):
+    """общая стоимость конкретного товара"""
     assert test_class.calculate_total_price() == 364
 
 
 def test_apply_discount(test_class):
-    assert test_class.apply_discount() == 7
+    test_class.apply_discount()
+    assert test_class.price == 7
 
 
 def test_string_to_number():
-    """тестируем метод конвертации строки в число"""
-
     assert Item.string_to_number("10.5") == 10
     with pytest.raises(ValueError):
         Item.string_to_number("abc")
     assert Item.string_to_number(10) == print('Данная запись не является числом-строкой')
 
 
-def test__string_to_number():
-    """тестируем метод конвертации строки в число"""
-
-    assert Item.string_to_number("10.5") == 10
-    with pytest.raises(ValueError):
-        Item.string_to_number("abc")
-    assert Item.string_to_number(10) == print('Данная запись не является числом-строкой')
+def test_instantiate_from_csv():
+    Item.instantiate_from_csv("../src/items.csv")
+    assert len(Item.all) == 5
