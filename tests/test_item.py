@@ -25,7 +25,7 @@ def test_string_to_number():
     assert Item.string_to_number("10.5") == 10
     with pytest.raises(ValueError):
         Item.string_to_number("abc")
-    assert Item.string_to_number(10) == print('Данная запись не является числом-строкой')
+    assert Item.string_to_number(10) == None
 
 
 def test_instantiate_from_csv():
