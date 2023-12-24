@@ -17,7 +17,7 @@ class Item:
         :param quantity: Количество товара в магазине.
         """
 
-        self.__name = name
+        self.name = name
         self.price = price
         self.quantity = quantity
         Item.all.append(self)
@@ -27,13 +27,11 @@ class Item:
 
     @property
     def name(self):
-        """геттер атрибута name"""
 
         return self.__name
 
     @name.setter
     def name(self, name):
-        """сеттер атрибута name"""
 
         if 0 < len(name) < 10:
             self.__name = name
@@ -45,7 +43,7 @@ class Item:
         """метод создания экземпляров класса из файла items.csv"""
 
         cls.all = []
-        with open(csv_path, 'rt', newline='', encoding='windows-1251') as csvfile:
+        with open(csv_path, newline='', encoding='windows-1251', errors='replace') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 cls(row["name"], row["price"], row["quantity"])
@@ -71,4 +69,6 @@ class Item:
         Применяет установленную скидку для конкретного товара.
         """
 
-        self.price *= self.pay_rate
+        self.price = self.price * self.pay_rate
+
+
