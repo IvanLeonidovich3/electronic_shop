@@ -28,6 +28,9 @@ class Item:
     def __str__(self):
         return self.__name
 
+    def __add__(self, other):
+        return self.quantity + other.quantity
+
     @property
     def name(self):
 
