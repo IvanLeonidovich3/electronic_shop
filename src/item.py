@@ -29,7 +29,10 @@ class Item:
         return self.__name
 
     def __add__(self, other):
-        return self.quantity + other.quantity
+        if issubclass(other.__class__, Item):
+            return self.quantity + other.quantity
+        else:
+            raise ValueError('можно слкадывать только с подклассами Item')
 
     @property
     def name(self):
