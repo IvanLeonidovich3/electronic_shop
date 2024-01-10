@@ -12,7 +12,10 @@ class Phone(Item):
 
     def __add__(self, other):
         """проверка на сложение экземпляров классов Phone and Item"""
-        return self.quantity + other.quantity
+        if isinstance(other, (Phone, Item)):
+            return self.quantity + other.quantity
+        else:
+            raise ValueError('нужно сложить экземпляры классов Item end Phone')
 
     @property
     def number_of_sim(self):
