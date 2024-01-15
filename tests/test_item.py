@@ -3,6 +3,7 @@
 import pytest
 
 from src.item import Item
+from src.pathich import Csv_path, No_file, Csv_test
 from src.phone import Phone
 
 
@@ -49,3 +50,11 @@ def test_add():
     phone1 = Phone("iPhone 14", 120_000, 5, 2)
     assert item1 + phone1 == 25
     assert phone1 + phone1 == 10
+
+
+def test_instantiate_from_csv():
+    Item.instantiate_from_csv(Csv_path)
+    assert len(Item.all) == 5
+    assert Item.instantiate_from_csv(Csv_path) is True
+    assert Item.instantiate_from_csv(No_file) is "Отсутствует файл items.csv"
+    assert Item.instantiate_from_csv(Csv_test) is "Файл items.csv поврежден"
