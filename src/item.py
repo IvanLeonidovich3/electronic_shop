@@ -1,5 +1,7 @@
 import csv
 
+import src
+
 
 class InstantiateCSVError:
     def __init__(self):
@@ -53,16 +55,16 @@ class Item:
             self.__name = name[:10]
 
     @classmethod
-    def instantiate_from_csv(cls, csv_path: str):
+    def instantiate_from_csv(cls):
         """метод создания экземпляров класса из файла items.csv"""
 
         cls.all = []
-        with open(csv_path, newline='', encoding='windows-1251', errors='replace') as csvfile:
+        with open(src.items.csv, newline='', encoding='windows-1251', errors='replace') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 cls(row["name"], row["price"], row["quantity"])
         try:
-            with open(csv_path, 'r', encoding="windows-1251") as csv_file:
+            with open(src.items.csv, 'r', encoding="windows-1251") as csv_file:
                 csv_data: csv.DictReader = csv.DictReader(csv_file)
                 csv_data_list = list(csv_data)
                 for line in csv_data_list:
